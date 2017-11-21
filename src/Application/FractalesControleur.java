@@ -10,7 +10,7 @@ public class FractalesControleur{
 		System.out.println("je suis FractalesControleur");
 	}
 
-	/* calcul de la fractale de Mandelbrot */
+	/* calcul de la position de la fractale de Mandelbrot */
 	public float Mandelbrot(float x, float y, float x1, float y1, float zoom, float iteration_max ) {
 
 		float c_r = x / zoom + x1;

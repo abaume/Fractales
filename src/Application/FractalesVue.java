@@ -2,14 +2,15 @@ package Application;
 
 import java.util.Observable;
 import java.util.Observer;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import javax.swing.JPanel;
+import java.awt.Graphics;
 
 import javax.swing.*;
 
-public class FractalesVue extends JFrame implements Observer, ActionListener {
+public class FractalesVue extends JPanel implements Observer, ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private FractalesControleur controleur;
@@ -23,14 +24,9 @@ public class FractalesVue extends JFrame implements Observer, ActionListener {
 
 	}
 
-	public FractalesVue(FractalesControleur controleur, FractalesModèle modele, String titre) {
-		super(titre);
+	public FractalesVue(FractalesControleur controleur, FractalesModèle modele) {
 		this.controleur = controleur;
 		this.model = modele;
-
-		//		displayPoints2 = new JLabel(":");
-
-
 	}
 
 	public void actionPerformed(ActionEvent e) {}
@@ -39,7 +35,7 @@ public class FractalesVue extends JFrame implements Observer, ActionListener {
 	//			}
 
 
-	public void paintComponent(Graphics g) {
+	public void afficherMandelBrot(Dessin g) {
 		// définition de la zone à dessiner sachant que l'ensemble
 		// de Mandelbrot est toujours compris entre les coordonnées suivantes
 		model.setx1((float)-2.1); 
@@ -90,11 +86,20 @@ public class FractalesVue extends JFrame implements Observer, ActionListener {
 
 		FractalesModèle model = new FractalesModèle();
 		FractalesControleur controller = new FractalesControleur(model);
+<<<<<<< HEAD
 		FractalesVue view = new FractalesVue(controller, model, "Fractales");
 		model.addObserver(view);
 		
 //		view.afficherMandelBrot(null);
 
 		Dessin d = new Dessin();
+=======
+		
+		FractalesVue view = new FractalesVue(controller, model);
+		Dessin g = new Dessin();
+		
+		model.addObserver(view);
+		view.afficherMandelBrot(g);
+>>>>>>> origin/master
 	}
 }

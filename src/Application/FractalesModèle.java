@@ -41,12 +41,7 @@ public class FractalesModèle extends Observable{
     public void sety2 (float x) { this.y2 = x; setChanged(); notifyObservers(); }
     
     public void setZoom (float x) { this.zoom = x; setChanged(); notifyObservers(); }
-    
-   
-
-//    	setChanged(); (dans un set)
-//    	notifyObservers(); (idem)
-    
+       
 }
 
 

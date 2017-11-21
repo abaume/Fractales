@@ -18,7 +18,7 @@ public class FractalesControleur{
 		float z_i = 0;
 		float i = 0;
 
-		// z_r² + z_i² < 4 && i < iteration_max
+		// z_r² + z_i² < 4 && i < 50
 		while (z_r*z_r + z_i*z_i < 4 && i < iteration_max) {
 			float tmp = z_r;
 			// z_r² - z_i² + c_r;

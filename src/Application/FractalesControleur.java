@@ -9,6 +9,7 @@ public class FractalesControleur{
 		this.model = modele;
 	}
 
+	/* calcul de la fractale de Mandelbrot */
 	public float Mandelbrot(float x, float y, float x1, float y1, float zoom, float iteration_max ) {
 
 		float c_r = x / zoom + x1;
@@ -17,9 +18,12 @@ public class FractalesControleur{
 		float z_i = 0;
 		float i = 0;
 
+		// z_r² + z_i² < 4 && i < iteration_max
 		while (z_r*z_r + z_i*z_i < 4 && i < iteration_max) {
 			float tmp = z_r;
+			// z_r² - z_i² + c_r;
 			z_r = z_r*z_r - z_i*z_i + c_r;
+			// 2z_i*z_r + c_i;
 			z_i = 2*z_i*tmp + c_i;
 			i = i+1;
 		}

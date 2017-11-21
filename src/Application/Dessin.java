@@ -24,7 +24,7 @@ public class Dessin extends JPanel{
 //	}
 	
 	public void paintComponent(Graphics g) {
-		System.out.println("je suis exécutée");
+		System.out.println("je suis exécutée dans Dessin");
 		g.fillOval(10, 10, 2,2);
 	}
 }

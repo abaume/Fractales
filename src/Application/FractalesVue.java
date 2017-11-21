@@ -50,6 +50,8 @@ public class FractalesVue extends JFrame implements Observer, ActionListener {
 		float y1 = model.gety1();
 		model.sety2((float)1.2);
 		float y2 = model.gety2();
+		
+		System.out.println("je suis paintComponent");
 
 //		// on utilise le paint de la classe JFrame
 //		super.paint(g);
@@ -64,6 +66,8 @@ public class FractalesVue extends JFrame implements Observer, ActionListener {
 		float image_x = (x2 - x1) * zoom;
 		float image_y = (y2 - y1) * zoom;
 
+		System.out.println("je suis la");
+		
 		for (int x = 0; x < image_x; x++) {
 			for (int y = 0; y < image_y; y++) {
 
@@ -71,6 +75,7 @@ public class FractalesVue extends JFrame implements Observer, ActionListener {
 				if ( i == iteration_max) {
 					// dessiner le point
 					I.setRGB(x, y, (int)i);
+					g.fillOval(x, y, 1,1);
 				}
 			}
 		}
@@ -86,9 +91,8 @@ public class FractalesVue extends JFrame implements Observer, ActionListener {
 		FractalesModèle model = new FractalesModèle();
 		FractalesControleur controller = new FractalesControleur(model);
 		FractalesVue view = new FractalesVue(controller, model, "Fractales");
+		model.addObserver(view);
 		
-//
-//		model.addObserver(view);
 //		view.afficherMandelBrot(null);
 
 		Dessin d = new Dessin();

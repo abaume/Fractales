@@ -7,6 +7,7 @@ public class FractalesControleur{
 	public FractalesControleur(FractalesModèle modele) {
 		// TODO Auto-generated constructor stub
 		this.model = modele;
+		System.out.println("je suis FractalesControleur");
 	}
 
 	/* calcul de la fractale de Mandelbrot */
@@ -27,9 +28,8 @@ public class FractalesControleur{
 			z_i = 2*z_i*tmp + c_i;
 			i = i+1;
 		}
-
+		System.out.println("je suis Mandelbrot");
 		return i;
-
 	}
 }
 

@@ -34,5 +34,6 @@ public class Fenetre extends JFrame {
 		/* ferme quand on clique sur la croix */
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
+		System.out.println("je suis fenetre");
 	}
 }

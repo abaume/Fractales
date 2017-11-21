@@ -28,7 +28,7 @@ public class Fenetre extends JFrame {
 		add(panel);
 
 		// on lui ajoute le dessin
-		this.setContentPane(new Dessin());
+//		this.setContentPane(new Dessin());
 		//		buttonPlus.addActionListener(this);
 
 		/* ferme quand on clique sur la croix */

@@ -2,15 +2,13 @@ package Application;
 
 import java.util.Observable;
 import java.util.Observer;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import javax.swing.JPanel;
-import java.awt.Graphics;
-
+import javax.swing.JComponent;
 import javax.swing.*;
 
-public class FractalesVue extends JPanel implements Observer, ActionListener {
+public class FractalesVue extends JComponent implements Observer, ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private FractalesControleur controleur;
@@ -50,56 +48,53 @@ public class FractalesVue extends JPanel implements Observer, ActionListener {
 		System.out.println("je suis paintComponent");
 
 //		// on utilise le paint de la classe JFrame
-//		super.paint(g);
+		super.paint(g);
 
 		float zoom = model.getZoom();
 		int iteration_max = model.getItMax();
 		float i;
 
-		BufferedImage I = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
-
 		// taille de l'image par rapport au zoom
 		float image_x = (x2 - x1) * zoom;
 		float image_y = (y2 - y1) * zoom;
 
-		System.out.println("je suis la");
-		
+
+
 		for (int x = 0; x < image_x; x++) {
 			for (int y = 0; y < image_y; y++) {
-
 				i = controleur.Mandelbrot(x, y, x1, y1, zoom, iteration_max);
 				if ( i == iteration_max) {
+					System.out.println("je suis la");
 					// dessiner le point
-					I.setRGB(x, y, (int)i);
 					g.fillOval(x, y, 1,1);
+
+					g.fillOval(1, 1, 10, 10);
 				}
 			}
 		}
-		g.drawImage(I, 0, 0, this);
 	}
 
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		System.out.println("je suis exécutée");
+		g.fillOval(10, 10, 2,2);
+	}
 	
 
 	public static void main(String[] args) {
 
-		Fenetre fen = new Fenetre("Fractales");
+		new Fenetre("Fractales");
 
 		FractalesModèle model = new FractalesModèle();
 		FractalesControleur controller = new FractalesControleur(model);
-<<<<<<< HEAD
-		FractalesVue view = new FractalesVue(controller, model, "Fractales");
-		model.addObserver(view);
 		
 //		view.afficherMandelBrot(null);
-
-		Dessin d = new Dessin();
-=======
 		
 		FractalesVue view = new FractalesVue(controller, model);
 		Dessin g = new Dessin();
 		
 		model.addObserver(view);
 		view.afficherMandelBrot(g);
->>>>>>> origin/master
 	}
 }

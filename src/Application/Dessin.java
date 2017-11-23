@@ -31,16 +31,7 @@ public class Dessin extends Graphics{
 //		this.width = w;
 //		this.height = h;
 //	}
-	
-<<<<<<< HEAD
-	public void paintComponent(Graphics g) {
-		System.out.println("je suis exécutée dans Dessin");
-		g.fillOval(10, 10, 2,2);
-=======
-//	public void paintComponent(Graphics g) {
-//		System.out.println("je suis exécutée");
-//		g.fillOval(10, 10, 2,2);
-//	}
+
 
 	@Override
 	public void clearRect(int x, int y, int width, int height) {
@@ -81,6 +72,7 @@ public class Dessin extends Graphics{
 	@Override
 	public boolean drawImage(Image img, int x, int y, ImageObserver observer) {
 		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
@@ -167,7 +159,6 @@ public class Dessin extends Graphics{
 	@Override
 	public void fillOval(int x, int y, int width, int height) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -257,7 +248,6 @@ public class Dessin extends Graphics{
 	@Override
 	public void translate(int x, int y) {
 		// TODO Auto-generated method stub
-		
->>>>>>> origin/master
+
 	}
 }

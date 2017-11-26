@@ -85,6 +85,7 @@ public class FractalesVue extends JComponent implements Observer, ActionListener
 					System.out.println("je suis la");
 					// dessiner le point
 					g.fillRect(x, y, 1, 1);
+					g.
 					this.repaint();
 				}
 			}

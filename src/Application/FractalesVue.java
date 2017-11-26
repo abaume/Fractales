@@ -43,7 +43,7 @@ public class FractalesVue extends JComponent implements Observer, ActionListener
  * @author baume
  * @
  */
-	public void afficherMandelBrot(Graphics g) {
+	public void paint(Graphics g) {
 		// définition de la zone à dessiner sachant que l'ensemble
 		// de Mandelbrot est toujours compris entre les coordonnées suivantes
 		model.setx1((float)-2.1); 
@@ -54,7 +54,15 @@ public class FractalesVue extends JComponent implements Observer, ActionListener
 		float y1 = model.gety1();
 		model.sety2((float)1.2);
 		float y2 = model.gety2();
-		
+//		model.setx1(0); 
+//		float x1 = model.getx1();
+//		model.setx2(500);
+//		float x2 = model.getx2();
+//		model.sety1(0);
+//		float y1 = model.gety1();
+//		model.sety2(500);
+//		float y2 = model.gety2();
+//		
 		System.out.println("je suis paintComponent");
 
 //		// on utilise le paint de la classe JFrame
@@ -70,14 +78,13 @@ public class FractalesVue extends JComponent implements Observer, ActionListener
 
 		System.out.println("je suis presque la");
 
-		for (int x = 0; x < image_x; x++) {
-			for (int y = 0; y < image_y; y++) {
+		for (int x = 0; x < image_x ; x++) {
+			for (int y = 0; y < image_y ; y++) {
 				i = controleur.Mandelbrot(x, y, x1, y1, zoom, iteration_max);
 				if ( i == iteration_max) {
 					System.out.println("je suis la");
 					// dessiner le point
-					g.fillOval(x, y, 1,1);
-					g.fillOval(1, 1, 10, 10);
+					g.fillOval(x, y, 1, 1);
 					this.repaint();
 				}
 			}
@@ -93,10 +100,11 @@ public class FractalesVue extends JComponent implements Observer, ActionListener
 		super.paintComponent(g);
 		System.out.println("je suis exécutée");
 		Graphics2D g2d = (Graphics2D) g.create();
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+//        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setPaint(Color.darkGray);
         g2d.fill(circle);
         g2d.dispose();
+        
 	}
 	
 

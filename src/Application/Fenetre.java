@@ -8,10 +8,14 @@ import javax.swing.JPanel;
 
 /**
  * @author baume
- *
+ * 
  */
 public class Fenetre extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String titre;
 	JPanel panel;
 
@@ -20,7 +24,7 @@ public class Fenetre extends JFrame {
 	 * @category constructeur
 	 */
 	public Fenetre (String titre) {
-		this.setTitle(titre);
+		this.titre = titre;
 
 		/* taille de la fenêtre */	
 		this.setBounds(300, 100, 700, 500);

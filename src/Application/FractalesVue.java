@@ -9,7 +9,6 @@ import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Ellipse2D;
-import java.awt.image.BufferedImage;
 
 import javax.swing.JComponent;
 import javax.swing.*;
@@ -40,8 +39,11 @@ public class FractalesVue extends JComponent implements Observer, ActionListener
 	//			
 	//			}
 
-
-	public void afficherMandelBrot(Dessin g) {
+/*
+ * @author baume
+ * @
+ */
+	public void afficherMandelBrot(Graphics g) {
 		// définition de la zone à dessiner sachant que l'ensemble
 		// de Mandelbrot est toujours compris entre les coordonnées suivantes
 		model.setx1((float)-2.1); 
@@ -76,12 +78,17 @@ public class FractalesVue extends JComponent implements Observer, ActionListener
 					// dessiner le point
 					g.fillOval(x, y, 1,1);
 					g.fillOval(1, 1, 10, 10);
+					this.repaint();
 				}
 			}
 		}
 	}
 
 	@Override
+	/*
+	 * (non-Javadoc)
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 */
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		System.out.println("je suis exécutée");

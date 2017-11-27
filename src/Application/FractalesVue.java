@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Ellipse2D;
 
-import javax.swing.JComponent;
 import javax.swing.*;
 
 public class FractalesVue extends JComponent implements Observer, ActionListener {
@@ -18,8 +17,10 @@ public class FractalesVue extends JComponent implements Observer, ActionListener
 	private static final long serialVersionUID = 1L;
 	private FractalesControleur controleur;
 	private FractalesModèle model;
-
-	private Ellipse2D circle = new Ellipse2D.Double(102.57, 26.8, 42.8, 42.8);
+	private JButton buttonPlus = new JButton("+");
+	private JButton buttonMinus = new JButton("-");
+	private String titre;
+	JPanel panel;
 
 	@Override
 	public void update(Observable o, Object arg) {
@@ -28,10 +29,20 @@ public class FractalesVue extends JComponent implements Observer, ActionListener
 
 	}
 
-	public FractalesVue(FractalesControleur controleur, FractalesModèle modele) {
+	public FractalesVue(FractalesControleur controleur, FractalesModèle modele, String titre) {
 		super();
 		this.controleur = controleur;
-		this.model = modele;		
+		this.model = modele;	
+		this.titre = titre;
+		
+		setBounds(0,0,961,0);
+		panel = new JPanel();
+		add(panel);
+		panel.add(buttonMinus);
+		panel.add(buttonPlus);
+		buttonPlus.addActionListener(this);
+		buttonMinus.addActionListener(this);
+		setVisible(true);
 	}
 
 	public void actionPerformed(ActionEvent e) {}
@@ -84,10 +95,9 @@ public class FractalesVue extends JComponent implements Observer, ActionListener
 	public static void main(String[] args) {
 
 		Fenetre fen = new Fenetre("Fractales");
-
 		FractalesModèle model = new FractalesModèle();
 		FractalesControleur controller = new FractalesControleur(model);
-		FractalesVue view = new FractalesVue(controller, model);
+		FractalesVue view = new FractalesVue(controller, model, "Fractales");
 		
 		fen.add(view);
 

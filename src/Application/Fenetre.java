@@ -31,8 +31,7 @@ public class Fenetre extends JFrame implements ActionListener{
 	 * @category constructeur
 	 */
 	public Fenetre (String titre) {
-		this.titre = titre;
-		this.setBounds(500, 200, 400, 300);
+		this.setBounds(10, 0, 961, 880);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		buttonsPanel = new JPanel();

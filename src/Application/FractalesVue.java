@@ -68,6 +68,12 @@ public class FractalesVue extends JComponent implements Observer, ActionListener
 				i = model.Mandelbrot(x, y, x1, y1, zoom, iteration_max);
 				if ( i == iteration_max) {
 					// dessiner le point
+					g.setColor(Color.BLACK);
+					g.fillRect(x, y, 1, 1);
+					((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+				}
+				else {
+					g.setColor(Color.getHSBColor(0, 100, i*255/iteration_max)) ;
 					g.fillRect(x, y, 1, 1);
 					((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 				}

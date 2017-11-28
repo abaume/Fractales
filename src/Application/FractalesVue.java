@@ -17,9 +17,6 @@ public class FractalesVue extends JComponent implements Observer, ActionListener
 	private static final long serialVersionUID = 1L;
 	private FractalesControleur controleur;
 	private FractalesModèle model;
-	private JButton buttonPlus = new JButton("+");
-	private JButton buttonMinus = new JButton("-");
-	private String titre;
 	JPanel panel;
 
 	@Override
@@ -29,20 +26,12 @@ public class FractalesVue extends JComponent implements Observer, ActionListener
 
 	}
 
-	public FractalesVue(FractalesControleur controleur, FractalesModèle modele, String titre) {
+	public FractalesVue(FractalesControleur controleur, FractalesModèle modele) {
 		super();
 		this.controleur = controleur;
-		this.model = modele;	
-		this.titre = titre;
+		this.model = modele;
 		
-		setBounds(0,0,961,0);
-		panel = new JPanel();
-		add(panel);
-		panel.add(buttonMinus);
-		panel.add(buttonPlus);
-		buttonPlus.addActionListener(this);
-		buttonMinus.addActionListener(this);
-		setVisible(true);
+		
 	}
 
 	public void actionPerformed(ActionEvent e) {}
@@ -97,7 +86,7 @@ public class FractalesVue extends JComponent implements Observer, ActionListener
 		Fenetre fen = new Fenetre("Fractales");
 		FractalesModèle model = new FractalesModèle();
 		FractalesControleur controller = new FractalesControleur(model);
-		FractalesVue view = new FractalesVue(controller, model, "Fractales");
+		FractalesVue view = new FractalesVue(controller, model);
 		
 		fen.add(view);
 

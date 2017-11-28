@@ -22,9 +22,6 @@ public class Fenetre extends JFrame implements ActionListener{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String titre;
-	JPanel buttonsPanel;
-	JButton bouton = new JButton("banane");
 
 	/**
 	 * @author baume
@@ -32,16 +29,7 @@ public class Fenetre extends JFrame implements ActionListener{
 	 */
 	public Fenetre (String titre) {
 		this.setBounds(10, 0, 961, 880);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
-		buttonsPanel = new JPanel();
-//		buttonsPanel.setBackground(Color.black);
-		buttonsPanel.add(bouton);
-		this.setContentPane(buttonsPanel);
-		
-		bouton.addActionListener(this);
-		setLayout(new BorderLayout(10,10));
-		
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);		
 		this.setVisible(true);
 	}
 

@@ -29,7 +29,7 @@ public class Fenetre extends JFrame implements ActionListener{
 	 */
 	public Fenetre (String titre) {
 		
-		this.setBounds(300, 50, 700, 800);
+		this.setBounds(300, 50, 900, 880);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);		
 		this.setVisible(true);
 	}

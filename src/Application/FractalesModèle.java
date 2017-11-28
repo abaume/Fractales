@@ -13,7 +13,7 @@ public class FractalesModèle extends Observable{
 	private float y2;
 	public typeFractale type;
 
-	private float zoom = 400; // distance 1 sur plan = 100px sur image
+	private float zoom = 360; // distance 1 sur plan = 100px sur image
 
 
 	public FractalesModèle(float x1, float x2, float y1, float y2, typeFractale t) {

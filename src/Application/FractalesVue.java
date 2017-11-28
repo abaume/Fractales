@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Ellipse2D;
 
-import javax.swing.JComponent;
 import javax.swing.*;
 
 public class FractalesVue extends JComponent implements Observer, ActionListener {
@@ -18,8 +17,11 @@ public class FractalesVue extends JComponent implements Observer, ActionListener
 	private static final long serialVersionUID = 1L;
 	private FractalesControleur controleur;
 	private FractalesModèle model;
-
-	private Ellipse2D circle = new Ellipse2D.Double(102.57, 26.8, 42.8, 42.8);
+<<<<<<< HEAD
+//	private typeFractale type;
+=======
+	JPanel panel;
+>>>>>>> 21b14d18567475e9e6caa8557b8323e6c3dfc52d
 
 	@Override
 	public void update(Observable o, Object arg) {
@@ -31,7 +33,9 @@ public class FractalesVue extends JComponent implements Observer, ActionListener
 	public FractalesVue(FractalesControleur controleur, FractalesModèle modele) {
 		super();
 		this.controleur = controleur;
-		this.model = modele;		
+		this.model = modele;
+		
+		
 	}
 
 	public void actionPerformed(ActionEvent e) {}
@@ -44,15 +48,10 @@ public class FractalesVue extends JComponent implements Observer, ActionListener
 	 * @
 	 */
 	public void paint(Graphics g) {
-		// définition de la zone à dessiner sachant que l'ensemble
-		// de Mandelbrot est toujours compris entre les coordonnées suivantes
-		model.setx1((float)-2.1); 
+		// définition de la zone à dessiner 
 		float x1 = model.getx1();
-		model.setx2((float)0.6);
 		float x2 = model.getx2();
-		model.sety1((float)-1.2);
 		float y1 = model.gety1();
-		model.sety2((float)1.2);
 		float y2 = model.gety2();
 
 		float zoom = model.getZoom();
@@ -65,9 +64,18 @@ public class FractalesVue extends JComponent implements Observer, ActionListener
 
 		for (int x = 0; x < image_x ; x++) {
 			for (int y = 0; y < image_y ; y++) {
-				i = model.Mandelbrot(x, y, x1, y1, zoom, iteration_max);
+				if (model.type.equals(typeFractale.MANDELBROT))
+					i = model.Mandelbrot(x, y, x1, y1, zoom, iteration_max);
+				else 
+					i = 0;
 				if ( i == iteration_max) {
 					// dessiner le point
+					g.setColor(Color.BLACK);
+					g.fillRect(x, y, 1, 1);
+					((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+				}
+				else {
+					g.setColor(Color.getHSBColor(0, 100, i*255/iteration_max)) ;
 					g.fillRect(x, y, 1, 1);
 					((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 				}
@@ -78,13 +86,19 @@ public class FractalesVue extends JComponent implements Observer, ActionListener
 	public static void main(String[] args) {
 
 		Fenetre fen = new Fenetre("Fractales");
+<<<<<<< HEAD
 
+		FractalesModèle MandelbrotModel = new FractalesModèle((float)-2.1, (float)0.6, (float)-1.2, (float)1.2, typeFractale.LISA);
+		FractalesControleur controller = new FractalesControleur(MandelbrotModel);
+		FractalesVue view = new FractalesVue(controller, MandelbrotModel);
+=======
 		FractalesModèle model = new FractalesModèle();
 		FractalesControleur controller = new FractalesControleur(model);
 		FractalesVue view = new FractalesVue(controller, model);
+>>>>>>> 21b14d18567475e9e6caa8557b8323e6c3dfc52d
 		
 		fen.add(view);
 
-		model.addObserver(view);
+		MandelbrotModel.addObserver(view);
 	}
 }

@@ -22,17 +22,15 @@ public class Fenetre extends JFrame implements ActionListener{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String titre;
-	JPanel buttonsPanel;
-	JButton bouton = new JButton("banane");
 
 	/**
 	 * @author baume
 	 * @category constructeur
 	 */
 	public Fenetre (String titre) {
+<<<<<<< HEAD
 		this.titre = titre;
-		this.setBounds(500, 200, 400, 300);
+		this.setBounds(300, 50, 700, 600);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		buttonsPanel = new JPanel();
@@ -43,6 +41,10 @@ public class Fenetre extends JFrame implements ActionListener{
 		bouton.addActionListener(this);
 		setLayout(new BorderLayout(10,10));
 		
+=======
+		this.setBounds(10, 0, 961, 880);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);		
+>>>>>>> 21b14d18567475e9e6caa8557b8323e6c3dfc52d
 		this.setVisible(true);
 	}
 

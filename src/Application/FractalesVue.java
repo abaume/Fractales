@@ -8,7 +8,6 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.Ellipse2D;
 
 import javax.swing.*;
 
@@ -17,7 +16,6 @@ public class FractalesVue extends JComponent implements Observer, ActionListener
 	private static final long serialVersionUID = 1L;
 	private FractalesControleur controleur;
 	private FractalesModèle model;
-	JPanel panel;
 
 	@Override
 	public void update(Observable o, Object arg) {

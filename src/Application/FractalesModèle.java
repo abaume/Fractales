@@ -12,8 +12,7 @@ public class FractalesModèle extends Observable{
 	private float y1;
 	private float y2;
 	public typeFractale type;
-
-	private float zoom = 360; // distance 1 sur plan = 100px sur image
+	private float zoom = 350; // distance 1 sur plan = 100px sur image
 
 
 	public FractalesModèle(float x1, float x2, float y1, float y2, typeFractale t) {
@@ -40,6 +39,16 @@ public class FractalesModèle extends Observable{
 			z_i = 2*z_i*tmp + c_i;
 			i = i+1;
 		}
+		return i;
+	}
+	
+	public float Lisa(float x, float y, float x1, float y1, float zoom, float iteration_max ) {
+		float i =0;
+		
+		
+		
+		
+		
 		return i;
 	}
 

@@ -18,41 +18,43 @@ public class Fenetre extends JFrame implements ActionListener{
 	public JMenuItem mandelbrotMenu = new JMenuItem("MandelBrot");
 	public JMenuItem lisaMenu = new JMenuItem("Lisa");
 	public JMenuItem zoomer = new JMenuItem("Zommer");
-	public JMenuItem dezoomer = new JMenuItem("dézommer");
-
+	public JMenuItem dezoomer = new JMenuItem("DÃ©zoomer");
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @author baume
-	 * @category constructeur
+	 * @category constructeur     
 	 */
 	public Fenetre (String titre) {
 		super();
 		this.setBounds(10, 0, 961, 880);
 		this.setTitle("Fractales");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);	
-		this.setVisible(true);
-		
-		//On initialise nos menus      
-		this.fractale.add(mandelbrotMenu);
-		this.fractale.add(lisaMenu);
-		this.zoom.add(zoomer);
-		this.zoom.add(dezoomer);
+	    this.setVisible(true);
+	    
+	  //On initialise nos menus      
+	  		this.fractale.add(mandelbrotMenu);
+	  		this.fractale.add(lisaMenu);
+	  		this.zoom.add(zoomer);
+	  		this.zoom.add(dezoomer);
 
-		//L'ordre d'ajout va déterminer l'ordre d'apparition dans le menu de gauche à droite
-		//Le premier ajouté sera tout à gauche de la barre de menu et inversement pour le dernier
-		this.menuBar.add(fractale);
-		this.menuBar.add(zoom);
-		this.setJMenuBar(menuBar);
-		this.setVisible(true);
+	  		//L'ordre d'ajout va dï¿½terminer l'ordre d'apparition dans le menu de gauche ï¿½ droite
+	  		//Le premier ajoutï¿½ sera tout ï¿½ gauche de la barre de menu et inversement pour le dernier
+	  		this.menuBar.add(fractale);
+	  		this.menuBar.add(zoom);
+	  		this.setJMenuBar(menuBar);
 	}
 
 	public void cliquerZoom (){
 		           
 	}
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-
+		
 	}
 }

@@ -17,11 +17,7 @@ public class FractalesVue extends JComponent implements Observer, ActionListener
 	private static final long serialVersionUID = 1L;
 	private FractalesControleur controleur;
 	private FractalesModèle model;
-<<<<<<< HEAD
-//	private typeFractale type;
-=======
 	JPanel panel;
->>>>>>> 21b14d18567475e9e6caa8557b8323e6c3dfc52d
 
 	@Override
 	public void update(Observable o, Object arg) {
@@ -86,16 +82,9 @@ public class FractalesVue extends JComponent implements Observer, ActionListener
 	public static void main(String[] args) {
 
 		Fenetre fen = new Fenetre("Fractales");
-<<<<<<< HEAD
-
-		FractalesModèle MandelbrotModel = new FractalesModèle((float)-2.1, (float)0.6, (float)-1.2, (float)1.2, typeFractale.LISA);
+		FractalesModèle MandelbrotModel = new FractalesModèle((float)-2.1, (float)0.6, (float)-1.2, (float)1.2, typeFractale.MANDELBROT);
 		FractalesControleur controller = new FractalesControleur(MandelbrotModel);
 		FractalesVue view = new FractalesVue(controller, MandelbrotModel);
-=======
-		FractalesModèle model = new FractalesModèle();
-		FractalesControleur controller = new FractalesControleur(model);
-		FractalesVue view = new FractalesVue(controller, model);
->>>>>>> 21b14d18567475e9e6caa8557b8323e6c3dfc52d
 		
 		fen.add(view);
 

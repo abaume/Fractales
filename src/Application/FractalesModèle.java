@@ -11,7 +11,6 @@ public class FractalesModèle extends Observable{
 	private float x2;
 	private float y1;
 	private float y2;
-<<<<<<< HEAD
 	public typeFractale type;
 
 	private float zoom = 400; // distance 1 sur plan = 100px sur image
@@ -25,10 +24,6 @@ public class FractalesModèle extends Observable{
 		this.type = t;
 		
 	}
-=======
-	
-	private float zoom = 350; // distance 1 sur plan = 100px sur image
->>>>>>> 21b14d18567475e9e6caa8557b8323e6c3dfc52d
 
 
 	public float Mandelbrot(float x, float y, float x1, float y1, float zoom, float iteration_max ) {

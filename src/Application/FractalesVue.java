@@ -8,16 +8,19 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.awt.geom.Ellipse2D;
 
 import javax.swing.*;
 
-public class FractalesVue extends JComponent implements Observer, ActionListener {
+public class FractalesVue extends JComponent implements Observer, MouseWheelListener, ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private FractalesControleur controleur;
 	private FractalesModèle model;
-
+	
 	@Override
 	public void update(Observable o, Object arg) {
 		//		
@@ -29,14 +32,14 @@ public class FractalesVue extends JComponent implements Observer, ActionListener
 		super();
 		this.controleur = controleur;
 		this.model = modele;
-		
-		
+		this.addMouseWheelListener(this);;
 	}
 
-	public void actionPerformed(ActionEvent e) {}
-	//		if (e.getSource() == buttonPlus) {
-	//			
-	//			}
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		System.out.println("Ah");
+		model.setZoom(model.getZoom()+e.getWheelRotation());
+		repaint();
+	}
 
 	/*
 	 * @author baume
@@ -70,12 +73,14 @@ public class FractalesVue extends JComponent implements Observer, ActionListener
 					((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 				}
 				else {
-					g.setColor(Color.getHSBColor(0, 100, i*255/iteration_max)) ;
+					g.setColor(Color.getHSBColor(1, 1, i/iteration_max));
 					g.fillRect(x, y, 1, 1);
 					((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 				}
 			}
 		}
+		
+		
 	}
 
 	public static void main(String[] args) {
@@ -84,9 +89,15 @@ public class FractalesVue extends JComponent implements Observer, ActionListener
 		FractalesModèle MandelbrotModel = new FractalesModèle((float)-2.1, (float)0.6, (float)-1.2, (float)1.2, typeFractale.MANDELBROT);
 		FractalesControleur controller = new FractalesControleur(MandelbrotModel);
 		FractalesVue view = new FractalesVue(controller, MandelbrotModel);
-		
+
 		fen.add(view);
 
 		MandelbrotModel.addObserver(view);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

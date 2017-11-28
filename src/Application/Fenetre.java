@@ -35,7 +35,7 @@ public class Fenetre extends JFrame implements ActionListener{
 		this.setBounds(10, 0, 961, 880);
 		this.setTitle("Fractales");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);	
-		setContentPane(buildContentPane());
+		//setContentPane(buildContentPane());
 	    this.setVisible(true);
 	}
 	

@@ -48,7 +48,7 @@ public class Fenetre extends JFrame implements ActionListener{
 	}
 
 	public void cliquerZoom (){
-		
+		           
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {

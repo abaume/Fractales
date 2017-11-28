@@ -28,7 +28,7 @@ public class Fenetre extends JFrame implements ActionListener{
 
 	/**
 	 * @author baume
-	 * @category constructeur
+	 * @category constructeur     
 	 */
 	public Fenetre (String titre) {
 		super();

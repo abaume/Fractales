@@ -42,16 +42,56 @@ public class FractalesModèle extends Observable{
 		return i;
 	}
 	
-	public float Lisa(float x, float y, float x1, float y1, float zoom, float iteration_max ) {
+	public float Julia(float x, float y, float x1, float y1, float zoom, float iteration_max ) {
+		
+		double c_r = 0.285;
+		double c_i = 0.01;
+		double z_r = x / zoom + x1;
+		double z_i = y / zoom + y1;
 		float i =0;
 		
-		
-		
-		
+		while (z_r*z_r + z_i*z_i < 4 && i < iteration_max) {
+			double tmp = z_r;
+			z_r = z_r*z_r - z_i*z_i + c_r;
+			z_i = 2*z_i*tmp + c_i;
+			i = i+1;
+		}
 		
 		return i;
 	}
 
+//	public float Bouddhabrot(float x, float y, float x1, float y1, float zoom, float iteration_max, float[][] pixels ) {
+//		float i = 0;
+//			
+//		double c_r = x / zoom + x1;
+//		double c_i = y / zoom + y1;
+//		double z_r = 0;
+//		double z_i = 0;
+//		
+//		int[][] tmp_pixels = new int[][] {};
+//		int cpt = 0;
+//		
+//		
+//		while (z_r*z_r + z_i*z_i < 4 && i < iteration_max) {
+//			double tmp = z_r;
+//			z_r = z_r*z_r - z_i*z_i + c_r;
+//			z_i = 2*z_i*tmp + c_i;
+//			i = i+1;
+//			tmp_pixels[cpt] = (int)((z_r-x1)*zoom);
+//			tmp_pixels[cpt+1] = (int)((z_i-y1)*zoom);
+//			cpt++;
+//		}
+//		
+//		if (i != iteration_max) {
+//			for (int[] pixel : tmp_pixels) {
+//				if (pixels[pixel[(int)x]][pixel[(int)y]] != 0) {
+//					
+//				}
+//			}
+//		}
+//		
+//		return i;
+//	}
 	public float getx1 () { return this.x1; }
 
 	public float getx2 () { return this.x2; }

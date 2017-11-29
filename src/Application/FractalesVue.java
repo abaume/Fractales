@@ -20,7 +20,7 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 	private static final long serialVersionUID = 1L;
 	private FractalesControleur controleur;
 	private FractalesModèle model;
-	
+
 	@Override
 	public void update(Observable o, Object arg) {
 		//		
@@ -59,34 +59,39 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 		// taille de l'image par rapport au zoom
 		float image_x = (x2 - x1) * zoom;
 		float image_y = (y2 - y1) * zoom;
-
+		
+		float[][] pixels = new float[][] {};
+		
+		
 		for (int x = 0; x < image_x ; x++) {
 			for (int y = 0; y < image_y ; y++) {
-				if (model.type.equals(typeFractale.MANDELBROT))
-					i = model.Mandelbrot(x, y, x1, y1, zoom, iteration_max);
-				else 
-					i = 0;
+//				pixels[x][y] = 0;
+				i = controleur.fractale(x, y);
 				if ( i == iteration_max) {
 					// dessiner le point
 					g.setColor(Color.BLACK);
 					g.fillRect(x, y, 1, 1);
 					((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+					repaint();
 				}
 				else {
 					g.setColor(Color.getHSBColor(1, 1, i/iteration_max));
 					g.fillRect(x, y, 1, 1);
 					((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+					repaint();
 				}
 			}
 		}
-		
-		
+
+
 	}
 
 	public static void main(String[] args) {
 
 		Fenetre fen = new Fenetre("Fractales");
 		FractalesModèle MandelbrotModel = new FractalesModèle((float)-2.1, (float)0.6, (float)-1.2, (float)1.2, typeFractale.MANDELBROT);
+		FractalesModèle JuliaModel = new FractalesModèle((float)-1, (float)1, (float)-1.2, (float)1.2, typeFractale.JULIA);
+		FractalesModèle BouddhaModel = new FractalesModèle((float)-2.1, (float)0.6, (float)-1.2, (float)1.2, typeFractale.BOUDDHA);
 		FractalesControleur controller = new FractalesControleur(MandelbrotModel);
 		FractalesVue view = new FractalesVue(controller, MandelbrotModel);
 
@@ -98,6 +103,6 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

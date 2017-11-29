@@ -74,6 +74,10 @@ public class FractalesModèle extends Observable{
 
 	public void setZoom (float x) { this.zoom = x; setChanged(); notifyObservers(); }
 
+	public int getIteration_max() {	return iteration_max; }
+
+	public void setIteration_max(int iteration_max) { this.iteration_max = iteration_max; }	
+
 }
 
 

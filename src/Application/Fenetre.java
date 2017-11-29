@@ -33,28 +33,29 @@ public class Fenetre extends JFrame implements ActionListener{
 		this.setBounds(10, 0, 961, 880);
 		this.setTitle("Fractales");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);	
-	    this.setVisible(true);
-	    
-	  //On initialise nos menus      
-	  		this.fractale.add(mandelbrotMenu);
-	  		this.fractale.add(lisaMenu);
-	  		this.zoom.add(zoomer);
-	  		this.zoom.add(dezoomer);
+		this.setVisible(true);
 
-	  		//L'ordre d'ajout va d�terminer l'ordre d'apparition dans le menu de gauche � droite
-	  		//Le premier ajout� sera tout � gauche de la barre de menu et inversement pour le dernier
-	  		this.menuBar.add(fractale);
-	  		this.menuBar.add(zoom);
-	  		this.setJMenuBar(menuBar);
+		//On initialise nos menus      
+		this.fractale.add(mandelbrotMenu);
+		this.fractale.add(lisaMenu);
+		this.zoom.add(zoomer);
+		this.zoom.add(dezoomer);
+
+		//L'ordre d'ajout va d�terminer l'ordre d'apparition dans le menu de gauche � droite
+		//Le premier ajout� sera tout � gauche de la barre de menu et inversement pour le dernier
+		this.menuBar.add(fractale);
+		this.menuBar.add(zoom);
+		this.setJMenuBar(menuBar);
+
 	}
 
 	public void cliquerZoom (){
-		           
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

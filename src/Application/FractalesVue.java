@@ -23,7 +23,12 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 	private static final long serialVersionUID = 1L;
 	private FractalesControleur controleur;
 	private FractalesModèle model;
-
+	private float x1debut;
+	private float x2debut;
+	
+	private float y1debut;
+	private float y2debut;
+	
 	@Override
 	public void update(Observable o, Object arg) {
 		//		
@@ -204,12 +209,11 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 		float yp = MouseInfo.getPointerInfo().getLocation().y*alphay+y1;		
 		float ydif = Math.abs(y1-y2)/2;
 		
-		float x1debut =(xp-(xdif));
-		float x2debut =(xp+(xdif));	
+		x1debut =(xp-(xdif));
+		x2debut =(xp+(xdif));	
 		
-		float y1debut =(yp-(ydif));
-		float y2debut =(yp+(ydif));
-		repaint();
+		y1debut =(yp-(ydif));
+		y2debut =(yp+(ydif));
 	}
 
 	@Override
@@ -233,11 +237,11 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 		float y1fin =(yp-(ydif));
 		float y2fin =(yp+(ydif));
 		
-		model.setx1(xp-(xdif));
-		model.setx2(xp+(xdif));	
+		model.setx1(model.getx1()+x1debut-x1fin);
+		model.setx2(model.getx2()+x2debut-x2fin);	
 		
-		model.sety1(yp-(ydif));
-		model.sety2(yp+(ydif));
+		model.sety1(model.gety1()+y1debut-y1fin);
+		model.sety2(model.gety2()+y2debut-y2fin);
 		repaint();
 	}
 }

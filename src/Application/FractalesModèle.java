@@ -4,7 +4,7 @@ import java.util.Observable;
 
 public class FractalesModèle extends Observable{
 
-	private int iteration_max = 50;
+	private int iteration_max = 150;
 
 	// variables de la zone à dessiner
 	private float x1; 
@@ -15,6 +15,10 @@ public class FractalesModèle extends Observable{
 	private float zoom = 350; // distance 1 sur plan = 100px sur image
 
 
+	public FractalesModèle() {
+		
+	}
+	
 	public FractalesModèle(float x1, float x2, float y1, float y2, typeFractale t) {
 		this.x1 = x1;
 		this.x2 = x2;
@@ -48,7 +52,7 @@ public class FractalesModèle extends Observable{
 		double c_i = 0.01;
 		double z_r = x / zoom + x1;
 		double z_i = y / zoom + y1;
-		float i =0;
+		float i = 0;
 		
 		while (z_r*z_r + z_i*z_i < 4 && i < iteration_max) {
 			double tmp = z_r;
@@ -113,6 +117,10 @@ public class FractalesModèle extends Observable{
 	public void sety2 (float x) { this.y2 = x; setChanged(); notifyObservers(); }
 
 	public void setZoom (float x) { this.zoom = x; setChanged(); notifyObservers(); }
+
+	public int getIteration_max() {	return iteration_max; }
+
+	public void setIteration_max(int iteration_max) { this.iteration_max = iteration_max; }	
 
 }
 

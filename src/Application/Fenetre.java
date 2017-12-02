@@ -16,12 +16,12 @@ public class Fenetre extends JFrame implements ActionListener{
 	public JMenu fractale = new JMenu("Fractale");
 	public JMenu zoom = new JMenu("Zoom");
 	public JMenuItem mandelbrotMenu = new JMenuItem("MandelBrot");
-	public JMenuItem lisaMenu = new JMenuItem("Lisa");
+	public JMenuItem juliaMenu = new JMenuItem("Julia");
 	public JMenuItem zoomer = new JMenuItem("Zommer");
 	public JMenuItem dezoomer = new JMenuItem("Dézoomer");
-	/**
-	 * 
-	 */
+	
+	private FractalesModèle m;
+	
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -33,28 +33,41 @@ public class Fenetre extends JFrame implements ActionListener{
 		this.setBounds(10, 0, 961, 880);
 		this.setTitle("Fractales");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);	
-	    this.setVisible(true);
-	    
-	  //On initialise nos menus      
-	  		this.fractale.add(mandelbrotMenu);
-	  		this.fractale.add(lisaMenu);
-	  		this.zoom.add(zoomer);
-	  		this.zoom.add(dezoomer);
+		this.setVisible(true);
 
-	  		//L'ordre d'ajout va d�terminer l'ordre d'apparition dans le menu de gauche � droite
-	  		//Le premier ajout� sera tout � gauche de la barre de menu et inversement pour le dernier
-	  		this.menuBar.add(fractale);
-	  		this.menuBar.add(zoom);
-	  		this.setJMenuBar(menuBar);
+		//On initialise nos menus      
+		this.fractale.add(mandelbrotMenu);
+		this.fractale.add(juliaMenu);
+		this.zoom.add(zoomer);
+		this.zoom.add(dezoomer);
+
+		mandelbrotMenu.addActionListener(this);
+		juliaMenu.addActionListener(this);
+
+
+		//L'ordre d'ajout va d�terminer l'ordre d'apparition dans le menu de gauche � droite
+		//Le premier ajout� sera tout � gauche de la barre de menu et inversement pour le dernier
+		this.menuBar.add(fractale);
+		this.menuBar.add(zoom);
+		this.setJMenuBar(menuBar);
+		
+		
+
 	}
 
 	public void cliquerZoom (){
-		           
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
+		if (arg0.getSource() == mandelbrotMenu) {
+			m.type = typeFractale.MANDELBROT;
+			System.out.print("patate");
+		}
+		else if (arg0.getSource() == juliaMenu) {
+			m.type = typeFractale.JULIA;
+			System.out.println("banane");
+		}
 	}
 }

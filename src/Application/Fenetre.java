@@ -31,9 +31,11 @@ public class Fenetre extends JFrame implements ActionListener{
 	public Fenetre (String titre) {
 		super();
 		this.setBounds(10, 0, 961, 880);
-		this.setTitle("Fractales");
+		this.setTitle("Fractales - Baumé,Lapicardise - S3B");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);	
 		this.setVisible(true);
+		
+		
 
 		//On initialise nos menus      
 		this.fractale.add(mandelbrotMenu);

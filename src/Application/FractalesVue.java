@@ -36,13 +36,13 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 
 	}
 
-	public FractalesModèle getModel() {
-		return model;
-	}
-	
-	public void setModel(FractalesModèle m) {
-		this.model = m;
-	}
+//	public FractalesModèle getModel() {
+//		return model;
+//	}
+//	
+//	public void setModel(FractalesModèle m) {
+//		this.model = m;
+//	}
 	
 	public FractalesVue(FractalesControleur controleur, FractalesModèle modele) {
 		super();
@@ -114,19 +114,21 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 		for (int x = 0; x < image_x ; x++) {
 			for (int y = 0; y < image_y ; y++) {
 //				pixels[x][y] = 0;
-				i = controleur.fractale(x, y);
+//				i = controleur.fractale(x, y);
+				if (model.type.equals(typeFractale.MANDELBROT))
+					i = model.Mandelbrot(x, y, x1, y1, zoom, iteration_max);
+				else 
+					i = 0;
 				if ( i == iteration_max) {
 					// dessiner le point
 					g.setColor(Color.BLACK);
 					g.fillRect(x, y, 1, 1);
 					((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-					repaint();
 				}
 				else {
 					g.setColor(Color.getHSBColor(1, 1, i/iteration_max));
 					g.fillRect(x, y, 1, 1);
 					((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-					repaint();
 				}
 			}
 		}

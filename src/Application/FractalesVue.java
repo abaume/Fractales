@@ -29,21 +29,6 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 	private float y1debut;
 	private float y2debut;
 	
-	@Override
-	public void update(Observable o, Object arg) {
-		//		
-		//		displayDataS.setText(Integer.toString(this.modele.getSeconde()));
-
-	}
-
-//	public FractalesModèle getModel() {
-//		return model;
-//	}
-//	
-//	public void setModel(FractalesModèle m) {
-//		this.model = m;
-//	}
-	
 	public FractalesVue(FractalesControleur controleur, FractalesModèle modele) {
 		super();
 		this.controleur = controleur;
@@ -106,19 +91,11 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 
 		// taille de l'image par rapport au zoom
 		float image_x = (x2 - x1) * zoom;
-		float image_y = (y2 - y1) * zoom;
-		
-//		float[][] pixels = new float[][] {};
-		
+		float image_y = (y2 - y1) * zoom;		
 		
 		for (int x = 0; x < image_x ; x++) {
 			for (int y = 0; y < image_y ; y++) {
-//				pixels[x][y] = 0;
-//				i = controleur.fractale(x, y);
-				if (model.type.equals(typeFractale.MANDELBROT))
-					i = model.Mandelbrot(x, y, x1, y1, zoom, iteration_max);
-				else 
-					i = 0;
+				i = controleur.fractale(x, y);
 				if ( i == iteration_max) {
 					// dessiner le point
 					g.setColor(Color.BLACK);
@@ -135,29 +112,26 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 	}
 	
 	public FractalesModèle afficherTypeFractale() {
-		FractalesModèle m;
-		switch (model.type) {
+		switch (this.model.type) {
 		case MANDELBROT :
-			m = new FractalesModèle((float)-2.1, (float)0.6, (float)-1.2, (float)1.2, typeFractale.MANDELBROT);
+			model = new FractalesModèle((float)-2.1, (float)0.6, (float)-1.2, (float)1.2, typeFractale.MANDELBROT);
 			break;
 		case JULIA :
-			m = new FractalesModèle((float)-1, (float)1, (float)-1.2, (float)1.2, typeFractale.JULIA);
+			model = new FractalesModèle((float)-1, (float)1, (float)-1.2, (float)1.2, typeFractale.JULIA);
 		case BOUDDHA :
-			m = new FractalesModèle((float)-2.1, (float)0.6, (float)-1.2, (float)1.2, typeFractale.BOUDDHA);
+			model = new FractalesModèle((float)-2.1, (float)0.6, (float)-1.2, (float)1.2, typeFractale.BOUDDHA);
 		default:
-			m = new FractalesModèle((float)-2.1, (float)0.6, (float)-1.2, (float)1.2, typeFractale.MANDELBROT);
+			model = new FractalesModèle((float)-2.1, (float)0.6, (float)-1.2, (float)1.2, typeFractale.MANDELBROT);
 			break;
 		
 		}
-		return m;
+		return model;
 	}
 
 	public static void main(String[] args) {
-
-		Fenetre fen = new Fenetre("Fractales");
 		
 		FractalesModèle modèle = new FractalesModèle((float)-2.1, (float)0.6, (float)-1.2, (float)1.2, typeFractale.MANDELBROT);
-//				view.afficherFractale();
+		Fenetre fen = new Fenetre("Fractales", modèle);
 		
 		FractalesControleur controller = new FractalesControleur(modèle);
 		FractalesVue view = new FractalesVue(controller,modèle);
@@ -168,14 +142,15 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-//if (e.getSource() == fen.mandelbrotMenu) {
-//			
-//		}
-//		else if (e.getSource() == juliaMenu) {
-//			
-//		}
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
 
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override

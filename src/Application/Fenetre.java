@@ -28,14 +28,14 @@ public class Fenetre extends JFrame implements ActionListener{
 	 * @author baume
 	 * @category constructeur     
 	 */
-	public Fenetre (String titre) {
+	public Fenetre (String titre, FractalesModèle modele) {
 		super();
 		this.setBounds(10, 0, 961, 880);
 		this.setTitle("Fractales - Baumé,Lapicardise - S3B");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);	
 		this.setVisible(true);
 		
-		
+		this.m = modele;
 
 		//On initialise nos menus      
 		this.fractale.add(mandelbrotMenu);
@@ -65,11 +65,9 @@ public class Fenetre extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource() == mandelbrotMenu) {
 			m.type = typeFractale.MANDELBROT;
-			System.out.print("patate");
 		}
 		else if (arg0.getSource() == juliaMenu) {
 			m.type = typeFractale.JULIA;
-			System.out.println("banane");
 		}
 	}
 }

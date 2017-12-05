@@ -139,6 +139,8 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 		fen.add(view);
 
 		modèle.addObserver(view);
+		
+		view.repaint();
 	}
 
 	@Override

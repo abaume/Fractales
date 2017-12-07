@@ -59,8 +59,7 @@ public class FractalesModèle extends Observable{
 			z_r = z_r*z_r - z_i*z_i + c_r;
 			z_i = 2*z_i*tmp + c_i;
 			i = i+1;
-		}
-		
+		}		
 		return i;
 	}
 

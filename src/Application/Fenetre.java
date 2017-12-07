@@ -94,30 +94,30 @@ public class Fenetre extends JFrame implements ActionListener{
 			m.type = typeFractale.JULIA;
 		}		
 		else if (arg0.getSource() == zoomer) {			
-			m.setx1(xp-(xdif/2));
-			m.setx2(xp+(xdif/2));	
+			m.setx1(xp-(xdif/2)+1);
+			m.setx2(xp+(xdif/2)+1);	
 			
-			m.sety1(yp-(ydif/2));
-			m.sety2(yp+(ydif/2));
+			m.sety1(yp-(ydif/2)+1);
+			m.sety2(yp+(ydif/2)+1);
 			
 			m.setZoom(m.getZoom()*2+1);
 			m.setIteration_max((int)(m.getIteration_max()*1.3));
 		}
 		else if (arg0.getSource() == dezoomer) {			
-			m.setx1(xp-(xdif*2));
-			m.setx2(xp+(xdif*2));	
+			m.setx1(xp-(xdif*2)+1);
+			m.setx2(xp+(xdif*2)+1);	
 			
-			m.sety1(yp-(ydif*2));
-			m.sety2(yp+(ydif*2));
+			m.sety1(yp-(ydif*2)+1);
+			m.sety2(yp+(ydif*2)+1);
 			
-			m.setZoom(m.getZoom()/2);
+			m.setZoom(m.getZoom()/2+1);
 			m.setIteration_max((int)(m.getIteration_max()/1.3));
 		}
 		else if (arg0.getSource() == augmenterItérations) {
-			m.setIteration_max(m.getIteration_max()*2);
+			m.setIteration_max(m.getIteration_max()*2+1);
 		}
 		else if (arg0.getSource() == diminuerItérations) {
-			m.setIteration_max(m.getIteration_max()/2);
+			m.setIteration_max(m.getIteration_max()/2+1);
 		}
 		this.repaint();
 	}

@@ -103,7 +103,7 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 					((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 				}
 				else {
-					g.setColor(Color.getHSBColor(1, 1, i/iteration_max));
+					g.setColor(Color.getHSBColor(1, 1, i/iteration_max*zoom));
 					g.fillRect(x, y, 1, 1);
 					((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 				}
@@ -111,22 +111,24 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 		}
 	}
 	
-	public FractalesModèle afficherTypeFractale() {
-		switch (this.model.type) {
-		case MANDELBROT :
-			model = new FractalesModèle((float)-2.1, (float)0.6, (float)-1.2, (float)1.2, typeFractale.MANDELBROT);
-			break;
-		case JULIA :
-			model = new FractalesModèle((float)-1, (float)1, (float)-1.2, (float)1.2, typeFractale.JULIA);
-		case BOUDDHA :
-			model = new FractalesModèle((float)-2.1, (float)0.6, (float)-1.2, (float)1.2, typeFractale.BOUDDHA);
-		default:
-			model = new FractalesModèle((float)-2.1, (float)0.6, (float)-1.2, (float)1.2, typeFractale.MANDELBROT);
-			break;
-		
-		}
-		return model;
-	}
+//	public FractalesModèle afficherTypeFractale() {
+//		switch (this.model.type) {
+//		case MANDELBROT :
+//			model = new FractalesModèle((float)-2.1, (float)0.6, (float)-1.2, (float)1.2, typeFractale.MANDELBROT);
+//			break;
+//		case JULIA :
+//			model = new FractalesModèle((float)-1, (float)1, (float)-1.2, (float)1.2, typeFractale.JULIA);
+//			break;
+//		case BOUDDHA :
+//			model = new FractalesModèle((float)-2.1, (float)0.6, (float)-1.2, (float)1.2, typeFractale.BOUDDHA);
+//			break;
+//		default:
+//			model = new FractalesModèle((float)-2.1, (float)0.6, (float)-1.2, (float)1.2, typeFractale.MANDELBROT);
+//			break;
+//		
+//		}
+//		return model;
+//	}
 
 	public static void main(String[] args) {
 		
@@ -137,9 +139,9 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 		FractalesVue view = new FractalesVue(controller,modèle);
 		
 		fen.add(view);
-
-		modèle.addObserver(view);
 		
+		modèle.addObserver(view);
+
 		view.repaint();
 	}
 

@@ -1,6 +1,7 @@
 package Application;
 
 import java.util.Observable;
+import java.util.Objects;
 
 public class FractalesModèle extends Observable{
 
@@ -62,6 +63,37 @@ public class FractalesModèle extends Observable{
 		}
 		
 		return i;
+	}
+	
+	private Complex F(Complex x)
+	{
+	    return (x^(Complex)NumRoots) - 1;
+	}
+
+	private Complex dFdx(Complex x)
+	{
+	    return NumRoots * (x^(Complex)(NumRoots - 1));
+	}
+	
+	
+	
+	public float Newton(float x, float y, float x1, float y1, float zoom, float iteration_max ) {
+		
+		double dx = (x1 - x) / (961 - 1);
+	    double dy = (y1 - y) / (861 - 1);
+		Complex x0 = new Complex(x, 0);
+		Complex x2 = x0;
+        Complex epsilon = new Complex(0,0);
+        double cutoff = 0.00000000001;
+        float i = 0;
+        do
+        {
+            if (i+1 > iteration_max) break;
+            epsilon = epsilon.minus((F(x2).divides(dFdx(x2))));
+            x2 = x2.plus(epsilon);
+        } while (epsilon.magnitude_scared() > cutoff);
+        
+        return i;
 	}
 
 //	public float Bouddhabrot(float x, float y, float x1, float y1, float zoom, float iteration_max, float[][] pixels ) {

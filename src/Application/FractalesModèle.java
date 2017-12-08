@@ -2,7 +2,6 @@ package Application;
 
 import java.awt.image.BufferedImage;
 import java.util.Observable;
-import java.util.Objects;
 
 public class FractalesModèle extends Observable{
 
@@ -19,6 +18,14 @@ public class FractalesModèle extends Observable{
 	
 	private BufferedImage image;
 	
+	/**
+	 * @author baume
+	 * @param x1
+	 * @param x2
+	 * @param y1
+	 * @param y2
+	 * @param t
+	 */
 	public FractalesModèle(float x1, float x2, float y1, float y2, typeFractale t) {
 		this.x1 = x1;
 		this.x2 = x2;
@@ -27,6 +34,17 @@ public class FractalesModèle extends Observable{
 		this.type = t;		
 	}
 
+	/**
+	 * Fractale de Mandelbrot
+	 * @author baume
+	 * @param x
+	 * @param y
+	 * @param x1
+	 * @param y1
+	 * @param zoom
+	 * @param iteration_max
+	 * @return l'itération en fonction de des coordonnées
+	 */
 	public float Mandelbrot(float x, float y, float x1, float y1, float zoom, float iteration_max ) {
 
 		float c_r = x / zoom + x1;
@@ -44,6 +62,17 @@ public class FractalesModèle extends Observable{
 		return i;
 	}
 	
+	/**
+	 * Fractale de Julia 
+	 * @author baume
+	 * @param x
+	 * @param y
+	 * @param x1
+	 * @param y1
+	 * @param zoom
+	 * @param iteration_max
+	 * @return l'itération en fonction de des coordonnées
+	 */
 	public float Julia(float x, float y, float x1, float y1, float zoom, float iteration_max ) {
 		
 		double c_r = 0.285;
@@ -61,6 +90,17 @@ public class FractalesModèle extends Observable{
 		return i;
 	}	
 	
+	/**
+	 * Fractale de Newton
+	 * @author baume
+	 * @param x
+	 * @param y
+	 * @param x1
+	 * @param y1
+	 * @param zoom
+	 * @param iteration_max
+	 * @return l'itération en fonction de des coordonnées
+	 */
 	public float Newton(float x, float y, float x1, float y1, float zoom, float iteration_max ) {
 				
 		double z_r = x / zoom + x1;

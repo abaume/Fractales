@@ -18,7 +18,6 @@ public class FractalesControleur{
 
 		float zoom = model.getZoom();
 		int iteration_max = model.getIteration_max();
-		float yligne = model.gety();
 		
 		float i = 0;
 		switch (model.type) {

@@ -26,13 +26,13 @@ public class FractalesControleur{
 			i = model.Julia(x, y, x1, y1, zoom, iteration_max);
 			break;
 		case MANDELBROT :
-			i = model.Mandelbrot(x, y, x1, y1, zoom, iteration_max, yligne);
+			i = model.Mandelbrot(x, y, x1, y1, zoom, iteration_max);
 			break;
 		case NEWTON :
 			i = model.Newton(x, y, x1, y1, zoom, iteration_max);
 			break;
 		default:
-			i = model.Mandelbrot(x, y, x1, y1, zoom, iteration_max, yligne);
+			i = model.Mandelbrot(x, y, x1, y1, zoom, iteration_max);
 			break;		
 		}
 		return i;

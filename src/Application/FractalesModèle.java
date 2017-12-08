@@ -18,21 +18,16 @@ public class FractalesModèle extends Observable{
 	private float y = 0;
 	
 	private BufferedImage image;
-
-
-	public FractalesModèle() {}
 	
 	public FractalesModèle(float x1, float x2, float y1, float y2, typeFractale t) {
 		this.x1 = x1;
 		this.x2 = x2;
 		this.y1 = y1;
 		this.y2 = y2;
-		this.type = t;
-		
+		this.type = t;		
 	}
 
-
-	public float Mandelbrot(float x, float y, float x1, float y1, float zoom, float iteration_max, float yligne ) {
+	public float Mandelbrot(float x, float y, float x1, float y1, float zoom, float iteration_max ) {
 
 		float c_r = x / zoom + x1;
 		float c_i = y / zoom + y1;

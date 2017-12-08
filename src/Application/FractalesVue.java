@@ -19,6 +19,7 @@ import javax.swing.*;
 
 public class FractalesVue extends JComponent implements Observer, MouseWheelListener, MouseListener, ActionListener {
 
+	// variables de la zone à dessiner
 	private static final long serialVersionUID = 1L;
 	private FractalesControleur controleur;
 	private FractalesModèle model;
@@ -46,53 +47,16 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 	}
 
 	/**
+	 * Affiche l'image à partir du buffer d'image
 	 * @author Romain
-	 * @author baume
 	 */
-	public void mouseWheelMoved(MouseWheelEvent e) {
-		float x1 = model.getx1();
-		float x2 = model.getx2();
-		float alphax = (x2-x1)/961;
-		float xp = MouseInfo.getPointerInfo().getLocation().x*alphax+x1;		
-		float xdif = Math.abs(x1-x2)/2;
-
-		float y1 = model.gety1();
-		float y2 = model.gety2();
-		float alphay = (y2-y1)/880;
-		float yp = MouseInfo.getPointerInfo().getLocation().y*alphay+y1;		
-		float ydif = Math.abs(y1-y2)/2;
-
-
-		if (e.getWheelRotation()<0) {
-			model.setx1(xp-(xdif/2));
-			model.setx2(xp+(xdif/2));	
-
-			model.sety1(yp-(ydif/2));
-			model.sety2(yp+(ydif/2));
-
-			model.setZoom(model.getZoom()*2);
-			model.setIteration_max((int)(model.getIteration_max()*1.3));
-		}
-		else {
-			model.setx1(xp-(xdif*2));
-			model.setx2(xp+(xdif*2));	
-
-			model.sety1(yp-(ydif*2));
-			model.sety2(yp+(ydif*2));
-
-			model.setZoom(model.getZoom()/2);
-			model.setIteration_max((int)(model.getIteration_max()/1.3));
-		}
-		model.sety(0);
-		createImage();
-	}
-
 	public void paint(Graphics g) {
 		img = createImage();
 		g.drawImage(img, 0, 0,this);
 	}
 
 	/*
+	 * Affiche l'image à partir du buffer d'image
 	 * @author baume
 	 * @author Romain
 	 */
@@ -151,7 +115,6 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 	 * @param args
 	 */
 	public static void main(String[] args) {
-
 		FractalesModèle modèle = new FractalesModèle((float)-2.1, (float)0.6, (float)-1.2, (float)1.2, typeFractale.MANDELBROT);
 		FractalesControleur controller = new FractalesControleur(modèle);
 		FractalesVue view = new FractalesVue(controller,modèle);		
@@ -163,21 +126,13 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 
 		view.repaint();
 	}
-
+	
 	/**
+	 * zoom et dézoom en fonction du roulement de la souris
 	 * @author Romain
+	 * @author baume
 	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	/**
-	 * @author Romain
-	 */
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
+	public void mouseWheelMoved(MouseWheelEvent e) {
 		float x1 = model.getx1();
 		float x2 = model.getx2();
 		float alphax = (x2-x1)/961;
@@ -190,19 +145,38 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 		float yp = MouseInfo.getPointerInfo().getLocation().y*alphay+y1;		
 		float ydif = Math.abs(y1-y2)/2;
 
-		float x1fin =(xp-(xdif));
-		float x2fin =(xp+(xdif));	
 
-		float y1fin =(yp-(ydif));
-		float y2fin =(yp+(ydif));
+		if (e.getWheelRotation()<0) {
+			model.setx1(xp-(xdif/2));
+			model.setx2(xp+(xdif/2));	
 
-		model.setx1(model.getx1()+x1debut-x1fin);
-		model.setx2(model.getx2()+x2debut-x2fin);	
+			model.sety1(yp-(ydif/2));
+			model.sety2(yp+(ydif/2));
 
-		model.sety1(model.gety1()+y1debut-y1fin);
-		model.sety2(model.gety2()+y2debut-y2fin);
-		model.sety(model.gety1());
+			model.setZoom(model.getZoom()*2);
+			model.setIteration_max((int)(model.getIteration_max()*1.3));
+		}
+		else {
+			model.setx1(xp-(xdif*2));
+			model.setx2(xp+(xdif*2));	
+
+			model.sety1(yp-(ydif*2));
+			model.sety2(yp+(ydif*2));
+
+			model.setZoom(model.getZoom()/2);
+			model.setIteration_max((int)(model.getIteration_max()/1.3));
+		}
+		model.sety(0);
 		createImage();
+	}
+
+	/**
+	 * @author Romain
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 
 	/**
@@ -254,6 +228,7 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 	}
 
 	/**
+	 * Calcule les coordonnés lors d'un appuie sur la souris
 	 * @author Romain
 	 */
 	@Override
@@ -276,5 +251,38 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 
 		y1debut =(yp-(ydif));
 		y2debut =(yp+(ydif));
+	}
+	
+	/**
+	 * Déplace la fractale au relachement de la souris
+	 * @author Romain
+	 */
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		float x1 = model.getx1();
+		float x2 = model.getx2();
+		float alphax = (x2-x1)/961;
+		float xp = MouseInfo.getPointerInfo().getLocation().x*alphax+x1;		
+		float xdif = Math.abs(x1-x2)/2;
+
+		float y1 = model.gety1();
+		float y2 = model.gety2();
+		float alphay = (y2-y1)/880;
+		float yp = MouseInfo.getPointerInfo().getLocation().y*alphay+y1;		
+		float ydif = Math.abs(y1-y2)/2;
+
+		float x1fin =(xp-(xdif));
+		float x2fin =(xp+(xdif));	
+
+		float y1fin =(yp-(ydif));
+		float y2fin =(yp+(ydif));
+
+		model.setx1(model.getx1()+x1debut-x1fin);
+		model.setx2(model.getx2()+x2debut-x2fin);	
+
+		model.sety1(model.gety1()+y1debut-y1fin);
+		model.sety2(model.gety2()+y2debut-y2fin);
+		model.sety(model.gety1());
+		createImage();
 	}
 }

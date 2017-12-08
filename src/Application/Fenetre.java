@@ -26,6 +26,7 @@ public class Fenetre extends JFrame implements ActionListener{
 	public JMenu iterations = new JMenu("Itérations");
 	public JMenuItem mandelbrotMenu = new JMenuItem("MandelBrot");
 	public JMenuItem juliaMenu = new JMenuItem("Julia");
+	public JMenuItem newtonMenu = new JMenuItem("Newton");
 	public JMenuItem zoomer = new JMenuItem("Zommer");
 	public JMenuItem dezoomer = new JMenuItem("Dézoomer");
 	public JMenuItem augmenterItérations = new JMenuItem("Itérations *2");
@@ -55,6 +56,7 @@ public class Fenetre extends JFrame implements ActionListener{
 		//On initialise nos menus      
 		this.fractale.add(mandelbrotMenu);
 		this.fractale.add(juliaMenu);
+		this.fractale.add(newtonMenu);
 		this.zoom.add(zoomer);
 		this.zoom.add(dezoomer);
 		this.iterations.add(augmenterItérations);
@@ -62,6 +64,7 @@ public class Fenetre extends JFrame implements ActionListener{
 
 		mandelbrotMenu.addActionListener(this);
 		juliaMenu.addActionListener(this);
+		newtonMenu.addActionListener(this);
 		zoomer.addActionListener(this);
 		dezoomer.addActionListener(this);
 		augmenterItérations.addActionListener(this);
@@ -109,7 +112,16 @@ public class Fenetre extends JFrame implements ActionListener{
 			m.setx2((float)1.6);				
 			m.sety1((float)-1.2);
 			m.sety2((float)2.2);
-		}		
+		}	
+		else if (arg0.getSource() == newtonMenu) {
+			m.type = typeFractale.NEWTON;
+			m.setZoom(350);
+			m.setIteration_max(75);
+			m.setx1((float)-1.4);
+			m.setx2((float)1.6);				
+			m.sety1((float)-1.2);
+			m.sety2((float)2.2);
+		}	
 		else if (arg0.getSource() == zoomer) {			
 			m.setx1(xp-(xdif/2));
 			m.setx2(xp+(xdif/2));	

@@ -95,6 +95,21 @@ public class Fenetre extends JFrame implements ActionListener{
 		float yp = 440*alphay+y1;		
 		float ydif = Math.abs(y1-y2)/2;
 		
+		switch (arg0.getSource().toString()) {
+		case "mandelbrotMenu":
+			m.type = typeFractale.MANDELBROT;
+			m.setZoom(350);
+			m.setIteration_max(75);
+			m.setx1((float)-2.1);
+			m.setx2((float)0.6);				
+			m.sety1((float)-1.2);
+			m.sety2((float)1.2);
+			break;
+
+		default:
+			break;
+		}
+		
 		if (arg0.getSource() == mandelbrotMenu) {
 			m.type = typeFractale.MANDELBROT;
 			m.setZoom(350);

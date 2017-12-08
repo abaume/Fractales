@@ -1,5 +1,6 @@
 package Application;
 import java.awt.BorderLayout;
+import java.awt.Graphics;
 import java.awt.MouseInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,21 +32,25 @@ public class Fenetre extends JFrame implements ActionListener{
 	public JMenuItem diminuerItérations = new JMenuItem("Itérations /2");
 	
 	private FractalesModèle m;
+	private FractalesVue v;
 	
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @author baume
+	 * @param modèle2 
 	 * @category constructeur     
 	 */
-	public Fenetre (String titre, FractalesModèle modele) {
+	public Fenetre (String titre, FractalesVue vue, FractalesModèle modèle) {
 		super();
 		this.setBounds(10, 0, 961, 880);
 		this.setTitle("Fractales - Baumé,Lapicardise - S3B");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);	
 		this.setVisible(true);
 		
-		this.m = modele;
+		this.v = vue;
+		this.m = modèle;
+		
 
 		//On initialise nos menus      
 		this.fractale.add(mandelbrotMenu);
@@ -94,7 +99,7 @@ public class Fenetre extends JFrame implements ActionListener{
 			m.setx1((float)-2.1);
 			m.setx2((float)0.6);				
 			m.sety1((float)-1.2);
-			m.sety2((float)1.2);
+			m.sety2((float)1.2);			
 		}
 		else if (arg0.getSource() == juliaMenu) {
 			m.type = typeFractale.JULIA;
@@ -106,21 +111,21 @@ public class Fenetre extends JFrame implements ActionListener{
 			m.sety2((float)2.2);
 		}		
 		else if (arg0.getSource() == zoomer) {			
-			m.setx1(xp-(xdif/2)+1);
-			m.setx2(xp+(xdif/2)+1);	
+			m.setx1(xp-(xdif/2));
+			m.setx2(xp+(xdif/2));	
 			
-			m.sety1(yp-(ydif/2)+1);
-			m.sety2(yp+(ydif/2)+1);
+			m.sety1(yp-(ydif/2));
+			m.sety2(yp+(ydif/2));
 			
 			m.setZoom(m.getZoom()*2+1);
 			m.setIteration_max((int)(m.getIteration_max()*1.3));
 		}
 		else if (arg0.getSource() == dezoomer) {			
-			m.setx1(xp-(xdif*2)+1);
-			m.setx2(xp+(xdif*2)+1);	
+			m.setx1(xp-(xdif*2));
+			m.setx2(xp+(xdif*2));	
 			
-			m.sety1(yp-(ydif*2)+1);
-			m.sety2(yp+(ydif*2)+1);
+			m.sety1(yp-(ydif*2));
+			m.sety2(yp+(ydif*2));
 			
 			m.setZoom(m.getZoom()/2+1);
 			m.setIteration_max((int)(m.getIteration_max()/1.3));
@@ -131,6 +136,8 @@ public class Fenetre extends JFrame implements ActionListener{
 		else if (arg0.getSource() == diminuerItérations) {
 			m.setIteration_max(m.getIteration_max()/2+1);
 		}
+		m.sety(0);
+		v.createImage();
 		this.repaint();
 	}
 	

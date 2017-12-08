@@ -1,5 +1,6 @@
 package Application;
 
+import java.awt.image.BufferedImage;
 import java.util.Observable;
 
 public class FractalesModèle extends Observable{
@@ -13,6 +14,9 @@ public class FractalesModèle extends Observable{
 	private float y2;
 	public typeFractale type;
 	private float zoom = 350; // distance 1 sur plan = 100px sur image
+	private float y = 0;
+	
+	private BufferedImage image;
 
 
 	public FractalesModèle() {
@@ -29,7 +33,7 @@ public class FractalesModèle extends Observable{
 	}
 
 
-	public float Mandelbrot(float x, float y, float x1, float y1, float zoom, float iteration_max ) {
+	public float Mandelbrot(float x, float y, float x1, float y1, float zoom, float iteration_max, float yligne ) {
 
 		float c_r = x / zoom + x1;
 		float c_i = y / zoom + y1;
@@ -104,8 +108,8 @@ public class FractalesModèle extends Observable{
 	public float gety2 () { return this.y2; }
 
 	public float getZoom() { return this.zoom; }
-
-	public int getItMax() { return iteration_max; }
+	
+	public float gety() { return this.y; }
 
 	public void setx1 (float x) { this.x1 = x; setChanged(); notifyObservers(); }
 
@@ -116,10 +120,17 @@ public class FractalesModèle extends Observable{
 	public void sety2 (float x) { this.y2 = x; setChanged(); notifyObservers(); }
 
 	public void setZoom (float x) { this.zoom = x; setChanged(); notifyObservers(); }
+	
+	public void sety (float x) { this.y = x; setChanged(); notifyObservers(); }
 
 	public int getIteration_max() {	return iteration_max; }
 
-	public void setIteration_max(int iteration_max) { this.iteration_max = iteration_max; }	
+	public void setIteration_max(int iteration_max) { this.iteration_max = iteration_max; }
+
+	public BufferedImage getImage() {
+		// TODO Auto-generated method stub
+		return image;
+	}	
 
 }
 

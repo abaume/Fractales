@@ -1,12 +1,7 @@
 package Application;
-import java.awt.BorderLayout;
-import java.awt.Graphics;
-import java.awt.MouseInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
-
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -15,14 +10,14 @@ import javax.swing.KeyStroke;
 
 /**
  * @author baume
- * 
+ * @author Romain
+ *
  */
 public class Fenetre extends JFrame implements ActionListener{
 
 	private JMenuBar menuBar = new JMenuBar();
 	public JMenu fractale = new JMenu("Fractale");
 	public JMenu zoom = new JMenu("Zoom");
-
 	public JMenu iterations = new JMenu("Itérations");
 	public JMenuItem mandelbrotMenu = new JMenuItem("MandelBrot");
 	public JMenuItem juliaMenu = new JMenuItem("Julia");
@@ -39,6 +34,7 @@ public class Fenetre extends JFrame implements ActionListener{
 
 	/**
 	 * @author baume
+	 * @author Romain
 	 * @param modèle2 
 	 * @category constructeur     
 	 */
@@ -50,17 +46,20 @@ public class Fenetre extends JFrame implements ActionListener{
 		this.setVisible(true);
 		
 		this.v = vue;
-		this.m = modèle;
-		
+		this.m = modèle;		
 
-		//On initialise nos menus      
+		//Initialisation des menus      
 		this.fractale.add(mandelbrotMenu);
 		this.fractale.add(juliaMenu);
 		this.fractale.add(newtonMenu);
 		this.zoom.add(zoomer);
 		this.zoom.add(dezoomer);
 		this.iterations.add(augmenterItérations);
-		this.iterations.add(diminuerItérations);
+		this.iterations.add(diminuerItérations);		
+		this.menuBar.add(fractale);
+		this.menuBar.add(zoom);
+		this.menuBar.add(iterations);
+		this.setJMenuBar(menuBar);
 
 		mandelbrotMenu.addActionListener(this);
 		juliaMenu.addActionListener(this);
@@ -72,15 +71,13 @@ public class Fenetre extends JFrame implements ActionListener{
 		augmenterItérations.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_UP, ActionEvent.CTRL_MASK));
 		diminuerItérations.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, ActionEvent.CTRL_MASK));
 
-		//L'ordre d'ajout va d�terminer l'ordre d'apparition dans le menu de gauche � droite
-		//Le premier ajout� sera tout � gauche de la barre de menu et inversement pour le dernier
-		this.menuBar.add(fractale);
-		this.menuBar.add(zoom);
-		this.menuBar.add(iterations);
-		this.setJMenuBar(menuBar);
-
 	}
 
+	/**
+	 * @author Romain
+	 * @author baume 
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		float x1 = m.getx1();
@@ -94,21 +91,6 @@ public class Fenetre extends JFrame implements ActionListener{
 		float alphay = (y2-y1)/880;
 		float yp = 440*alphay+y1;		
 		float ydif = Math.abs(y1-y2)/2;
-		
-		switch (arg0.getSource().toString()) {
-		case "mandelbrotMenu":
-			m.type = typeFractale.MANDELBROT;
-			m.setZoom(350);
-			m.setIteration_max(75);
-			m.setx1((float)-2.1);
-			m.setx2((float)0.6);				
-			m.sety1((float)-1.2);
-			m.sety2((float)1.2);
-			break;
-
-		default:
-			break;
-		}
 		
 		if (arg0.getSource() == mandelbrotMenu) {
 			m.type = typeFractale.MANDELBROT;
@@ -139,8 +121,7 @@ public class Fenetre extends JFrame implements ActionListener{
 		}	
 		else if (arg0.getSource() == zoomer) {			
 			m.setx1(xp-(xdif/2));
-			m.setx2(xp+(xdif/2));	
-			
+			m.setx2(xp+(xdif/2));			
 			m.sety1(yp-(ydif/2));
 			m.sety2(yp+(ydif/2));
 			
@@ -149,8 +130,7 @@ public class Fenetre extends JFrame implements ActionListener{
 		}
 		else if (arg0.getSource() == dezoomer) {			
 			m.setx1(xp-(xdif*2));
-			m.setx2(xp+(xdif*2));	
-			
+			m.setx2(xp+(xdif*2));				
 			m.sety1(yp-(ydif*2));
 			m.sety2(yp+(ydif*2));
 			

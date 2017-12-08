@@ -25,6 +25,7 @@ public class Fenetre extends JFrame implements ActionListener{
 	public JMenu iterations = new JMenu("Itérations");
 	public JMenuItem mandelbrotMenu = new JMenuItem("MandelBrot");
 	public JMenuItem juliaMenu = new JMenuItem("Julia");
+	public JMenuItem newtonMenu = new JMenuItem("Newton");
 	public JMenuItem zoomer = new JMenuItem("Zommer");
 	public JMenuItem dezoomer = new JMenuItem("Dézoomer");
 	public JMenuItem augmenterItérations = new JMenuItem("Itérations *2");
@@ -50,6 +51,7 @@ public class Fenetre extends JFrame implements ActionListener{
 		//On initialise nos menus      
 		this.fractale.add(mandelbrotMenu);
 		this.fractale.add(juliaMenu);
+		this.fractale.add(newtonMenu);
 		this.zoom.add(zoomer);
 		this.zoom.add(dezoomer);
 		this.iterations.add(augmenterItérations);
@@ -57,6 +59,7 @@ public class Fenetre extends JFrame implements ActionListener{
 
 		mandelbrotMenu.addActionListener(this);
 		juliaMenu.addActionListener(this);
+		newtonMenu.addActionListener(this);
 		zoomer.addActionListener(this);
 		dezoomer.addActionListener(this);
 		augmenterItérations.addActionListener(this);
@@ -89,35 +92,56 @@ public class Fenetre extends JFrame implements ActionListener{
 		
 		if (arg0.getSource() == mandelbrotMenu) {
 			m.type = typeFractale.MANDELBROT;
+			m.setZoom(350);
+			m.setIteration_max(75);
+			m.setx1((float)-2.1);
+			m.setx2((float)0.6);				
+			m.sety1((float)-1.2);
+			m.sety2((float)1.2);
 		}
 		else if (arg0.getSource() == juliaMenu) {
 			m.type = typeFractale.JULIA;
-		}		
+			m.setZoom(350);
+			m.setIteration_max(75);
+			m.setx1((float)-1.4);
+			m.setx2((float)1.6);				
+			m.sety1((float)-1.2);
+			m.sety2((float)2.2);
+		}	
+		else if (arg0.getSource() == newtonMenu) {
+			m.type = typeFractale.NEWTON;
+			m.setZoom(350);
+			m.setIteration_max(75);
+			m.setx1((float)-1.4);
+			m.setx2((float)1.6);				
+			m.sety1((float)-1.2);
+			m.sety2((float)2.2);
+		}	
 		else if (arg0.getSource() == zoomer) {			
-			m.setx1(xp-(xdif/2));
-			m.setx2(xp+(xdif/2));	
+			m.setx1(xp-(xdif/2)+1);
+			m.setx2(xp+(xdif/2)+1);	
 			
-			m.sety1(yp-(ydif/2));
-			m.sety2(yp+(ydif/2));
+			m.sety1(yp-(ydif/2)+1);
+			m.sety2(yp+(ydif/2)+1);
 			
 			m.setZoom(m.getZoom()*2+1);
 			m.setIteration_max((int)(m.getIteration_max()*1.3));
 		}
 		else if (arg0.getSource() == dezoomer) {			
-			m.setx1(xp-(xdif*2));
-			m.setx2(xp+(xdif*2));	
+			m.setx1(xp-(xdif*2)+1);
+			m.setx2(xp+(xdif*2)+1);	
 			
-			m.sety1(yp-(ydif*2));
-			m.sety2(yp+(ydif*2));
+			m.sety1(yp-(ydif*2)+1);
+			m.sety2(yp+(ydif*2)+1);
 			
-			m.setZoom(m.getZoom()/2);
+			m.setZoom(m.getZoom()/2+1);
 			m.setIteration_max((int)(m.getIteration_max()/1.3));
 		}
 		else if (arg0.getSource() == augmenterItérations) {
-			m.setIteration_max(m.getIteration_max()*2);
+			m.setIteration_max(m.getIteration_max()*2+1);
 		}
 		else if (arg0.getSource() == diminuerItérations) {
-			m.setIteration_max(m.getIteration_max()/2);
+			m.setIteration_max(m.getIteration_max()/2+1);
 		}
 		this.repaint();
 	}

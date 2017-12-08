@@ -27,8 +27,9 @@ public class FractalesControleur{
 		case MANDELBROT :
 			i = model.Mandelbrot(x, y, x1, y1, zoom, iteration_max);
 			break;
-//		case BOUDDHA :
-//			i = model.Bouddhabrot(x, y, x1, y1, zoom, iteration_max, pixels);
+		case NEWTON :
+			i = model.Newton(x, y, x1, y1, zoom, iteration_max);
+			break;
 		default:
 			i = model.Mandelbrot(x, y, x1, y1, zoom, iteration_max);
 			break;		

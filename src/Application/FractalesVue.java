@@ -147,25 +147,6 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 		return bufferedImage;
 	}
 
-	//	public FractalesModèle afficherTypeFractale() {
-	//		switch (this.model.type) {
-	//		case MANDELBROT :
-	//			model = new FractalesModèle((float)-2.1, (float)0.6, (float)-1.2, (float)1.2, typeFractale.MANDELBROT);
-	//			break;
-	//		case JULIA :
-	//			model = new FractalesModèle((float)-1, (float)1, (float)-1.2, (float)1.2, typeFractale.JULIA);
-	//			break;
-	//		case BOUDDHA :
-	//			model = new FractalesModèle((float)-2.1, (float)0.6, (float)-1.2, (float)1.2, typeFractale.BOUDDHA);
-	//			break;
-	//		default:
-	//			model = new FractalesModèle((float)-2.1, (float)0.6, (float)-1.2, (float)1.2, typeFractale.MANDELBROT);
-	//			break;
-	//		
-	//		}
-	//		return model;
-	//	}
-
 	public static void main(String[] args) {
 
 		FractalesModèle modèle = new FractalesModèle((float)-2.1, (float)0.6, (float)-1.2, (float)1.2, typeFractale.MANDELBROT);

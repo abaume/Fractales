@@ -5,14 +5,13 @@ import java.util.Observable;
 
 public class FractalesModèle extends Observable{
 
-	private int iteration_max = 400;
-
 	// variables de la zone à dessiner
 	private float x1; 
 	private float x2;
 	private float y1;
 	private float y2;
 	public typeFractale type;
+	private int iteration_max = 400;
 	private float zoom = 350; // distance 1 sur plan = 100px sur image
 	private float y = 0;
 	

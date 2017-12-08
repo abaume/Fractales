@@ -10,15 +10,11 @@ import java.awt.MouseInfo;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
-import java.math.*;
-
 import javax.swing.*;
 
 public class FractalesVue extends JComponent implements Observer, MouseWheelListener, MouseListener, ActionListener {
@@ -28,15 +24,19 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 	private FractalesModèle model;
 	private float x1debut;
 	private float x2debut;
-
 	private float y1debut;
 	private float y2debut;
 
 	Image img;
 	BufferedImage bufferedImage = new BufferedImage(961,880,BufferedImage.TYPE_INT_RGB);
-	Graphics g = bufferedImage.getGraphics();	
+	Graphics g = bufferedImage.getGraphics();
 
-
+	/**
+	 * @author Romain
+	 * @author baume
+	 * @param controleur
+	 * @param modele
+	 */
 	public FractalesVue(FractalesControleur controleur, FractalesModèle modele) {
 		super();
 		this.controleur = controleur;
@@ -45,6 +45,10 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 		this.addMouseListener(this);
 	}
 
+	/**
+	 * @author Romain
+	 * @author baume
+	 */
 	public void mouseWheelMoved(MouseWheelEvent e) {
 		float x1 = model.getx1();
 		float x2 = model.getx2();
@@ -90,7 +94,7 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 
 	/*
 	 * @author baume
-	 * @
+	 * @author Romain
 	 */
 	public Image createImage() {
 		// définition de la zone à dessiner 
@@ -99,7 +103,6 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 		float y1 = model.gety1();
 		float y2 = model.gety2();
 		float y = model.gety();
-
 		float zoom = model.getZoom();
 		int iteration_max = model.getIteration_max();
 		float i;
@@ -109,20 +112,15 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 		float image_y = (y2 - y1) * zoom;		 
 
 		for (int x = 0; x < image_x ; x++) {
-			//for (int y = yligne ; y < image_y ; y++) {
-			i = controleur.fractale(x, (int)y) /*+ 1 - (Math.log(2) / controleur.fractale(x, y)) / Math.log(2) */;
-
+			i = controleur.fractale(x, (int)y);
 			if (model.type == typeFractale.NEWTON) {
 				// dessiner le point
 				g.setColor(Color.BLACK);
 				g.drawLine(x, (int)y, x+1, (int)y+1);
 				((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
 				g.setColor(Color.getHSBColor(1, 1, i/iteration_max*zoom));
 				g.drawLine(x, (int)y, x+1, (int)y+1);
 				g.setColor(Color.getHSBColor(1, 1, (float)i/iteration_max*zoom));
-				//					g.fillRect(x, y, 1, 1);
-				//					((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			} 
 			else {
 				if ( i == iteration_max) {
@@ -147,11 +145,14 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 		return bufferedImage;
 	}
 
+	/**
+	 * @author Romain
+	 * @author baume
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		FractalesModèle modèle = new FractalesModèle((float)-2.1, (float)0.6, (float)-1.2, (float)1.2, typeFractale.MANDELBROT);
-
-
 		FractalesControleur controller = new FractalesControleur(modèle);
 		FractalesVue view = new FractalesVue(controller,modèle);		
 		Fenetre fen = new Fenetre("Fractales", view, modèle);
@@ -163,15 +164,20 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 		view.repaint();
 	}
 
+	/**
+	 * @author Romain
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
 	}
 
+	/**
+	 * @author Romain
+	 */
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		float x1 = model.getx1();
 		float x2 = model.getx2();
 		float alphax = (x2-x1)/961;
@@ -199,47 +205,57 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 		createImage();
 	}
 
-	// ==== JComponent Overrides ====
-
+	/**
+	 * @author Romain
+	 */
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-
 		BufferedImage image = model.getImage();
 		int w = Math.min(image.getWidth(), getWidth()),
 				h = Math.min(image.getHeight(), getHeight());
 		g.drawImage(image, 0, 0, w, h, 0, 0, w, h, null);
 	}
 
-
-
+	/**
+	 * @author Romain
+	 */
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 
 	}
 
-
-
-
+	/**
+	 * @author Romain
+	 */
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 
 	}
 
+	/**
+	 * @author Romain
+	 */
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 
 	}
 
+	/**
+	 * @author Romain
+	 */
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 
 	}
 
+	/**
+	 * @author Romain
+	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -261,5 +277,4 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 		y1debut =(yp-(ydif));
 		y2debut =(yp+(ydif));
 	}
-
 }

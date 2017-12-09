@@ -1,4 +1,5 @@
 package Application;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -71,6 +72,7 @@ public class Fenetre extends JFrame implements ActionListener{
 		augmenterItérations.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_UP, ActionEvent.CTRL_MASK));
 		diminuerItérations.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, ActionEvent.CTRL_MASK));
 
+		setSize(getSize());
 	}
 
 	/**
@@ -144,8 +146,6 @@ public class Fenetre extends JFrame implements ActionListener{
 			m.setIteration_max(m.getIteration_max()/2+1);
 		}
 		m.sety(0);
-		v.createImage();
-		this.repaint();
 	}
 	
 }

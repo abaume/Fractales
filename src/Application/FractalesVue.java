@@ -3,6 +3,7 @@ package Application;
 import java.util.Observable;
 import java.util.Observer;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -125,6 +126,8 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 		modèle.addObserver(view);
 
 		view.repaint();
+		
+		fen.setSize(960,880);
 	}
 	
 	/**
@@ -196,8 +199,7 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 	 */
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-
+		repaint();
 	}
 
 	/**

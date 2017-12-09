@@ -94,7 +94,7 @@ public class FractalesVue extends JComponent implements Observer, MouseWheelList
 					((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 				}
 				else {
-					g.setColor(Color.getHSBColor(1, 1, (float)i/iteration_max*zoom));
+					g.setColor(Color.getHSBColor(1, 255, (float)i*zoom/iteration_max));
 					g.drawLine(x, (int)y, x+1, (int)y+1);
 					((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 				}

@@ -71,8 +71,6 @@ public class Fenetre extends JFrame implements ActionListener{
 		diminuerItérations.addActionListener(this);
 		augmenterItérations.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_UP, ActionEvent.CTRL_MASK));
 		diminuerItérations.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, ActionEvent.CTRL_MASK));
-
-		setSize(getSize());
 	}
 
 	/**
